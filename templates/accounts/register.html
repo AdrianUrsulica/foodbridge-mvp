@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | FoodBridge</title>
+</head>
+<body>
+    <h1>Create your FoodBridge account</h1>
+    <p>Register as a food donor or recipient organisation.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create account</button>
+    </form>
+</body>
+</html>
