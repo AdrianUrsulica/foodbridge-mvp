@@ -58,3 +58,33 @@ class RegistrationTests(TestCase):
             User.objects.filter(email="same@example.com").count(),
             1,
         )
+
+class RoleAccessTests(TestCase):
+    def setUp(self):
+        User.objects.create_user(
+            username="donor",
+            email="donor@example.com",
+            role="DONOR",
+            password="StrongPass123!",
+        )
+        User.objects.create_user(
+            username="recipient",
+            email="recipient@example.com",
+            role="RECIPIENT",
+            password="StrongPass123!",
+        )
+
+    def test_donor_is_sent_to_donor_area(self):
+        self.client.login(username="donor", password="StrongPass123!")
+        response = self.client.get(reverse("role_home"))
+        self.assertRedirects(response, reverse("donor_home"))
+
+    def test_recipient_is_sent_to_recipient_area(self):
+        self.client.login(username="recipient", password="StrongPass123!")
+        response = self.client.get(reverse("role_home"))
+        self.assertRedirects(response, reverse("recipient_home"))
+
+    def test_recipient_cannot_remain_on_donor_page(self):
+        self.client.login(username="recipient", password="StrongPass123!")
+        response = self.client.get(reverse("donor_home"))
+        self.assertRedirects(response, reverse("recipient_home"))
