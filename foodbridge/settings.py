@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,11 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+# FoodBridge custom user model and auth settings
+AUTH_USER_MODEL = "accounts.User"
+TEMPLATES[0]["DIRS"] = [BASE_DIR / "templates"]
+STATICFILES_DIRS = [BASE_DIR / "static"]
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "role_home"
+LOGOUT_REDIRECT_URL = "login"
