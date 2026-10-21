@@ -26,3 +26,21 @@ def role_home(request):
     if request.user.role == User.Role.RECIPIENT:
         return redirect("recipient_home")
     return redirect("login")
+
+
+@login_required
+def donor_home(request):
+    if request.user.role != User.Role.DONOR:
+        return redirect("role_home")
+
+    return render(request, "accounts/donor_home.html")
+
+
+@login_required
+def recipient_home(request):
+    if request.user.role != User.Role.RECIPIENT:
+        return redirect("role_home")
+
+    return render(request, "accounts/recipient_home.html")
+
+

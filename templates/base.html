@@ -1,0 +1,75 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}FoodBridge{% endblock %}
+    </title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar">
+
+            <a href="{% url 'role_home' %}" class="logo">
+                FoodBridge
+            </a>
+
+            <div class="nav-links">
+
+                {% if user.is_authenticated %}
+
+                    <span class="user-info">
+                        {{ user.username }}
+                        ({{ user.get_role_display }})
+                    </span>
+
+                    <a href="{% url 'role_home' %}">
+                        Home
+                        
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+
+    <button type="submit" class="btn-logout">
+        Logout
+    </button>
+</form>
+
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}">
+                        Login
+                    </a>
+
+                    <a href="{% url 'register' %}">
+                        Register
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+<body class="{% block body_class %}{% endblock %}"></body>
+</html>

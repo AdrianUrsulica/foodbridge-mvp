@@ -1,0 +1,199 @@
+
+/* FoodBridge - Authentication UI */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f7f4;
+    color: #25352b;
+}
+
+/* Navigation Bar */
+
+.site-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dce8df;
+    padding: 18px 6%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #218451;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #218451;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Login Page */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+    padding: 25px;
+}
+
+.auth-card {
+    background-color: white;
+    width: 100%;
+    max-width: 430px;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.auth-card h1 {
+    margin-top: 0;
+    text-align: center;
+    color: #218451;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+/* Form Fields */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5ce;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.form-group input:focus {
+    outline: 2px solid #218451;
+    outline-offset: 1px;
+}
+
+/* Buttons */
+
+.btn-primary {
+    width: 100%;
+    padding: 13px;
+    background-color: #218451;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #17633d;
+}
+
+/* Messages and Links */
+
+.error-message {
+    background-color: #fff0f0;
+    color: #b42318;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.auth-footer a {
+    color: #218451;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .auth-card {
+        padding: 25px;
+    }
+}
+
+/* FoodBridge Login Background */
+
+.login-page {
+    background-image:
+        linear-gradient(
+            rgba(20, 45, 30, 0.35),
+            rgba(20, 45, 30, 0.35)
+        ),
+        url("../images/food-donation-bg.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Login Card */
+
+.login-page .auth-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.20);
+}
+
+/* Logout Button */
+
+.btn-logout {
+    background-color: #d64545;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-logout:hover {
+    background-color: #b52f2f;
+}
