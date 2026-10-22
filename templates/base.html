@@ -29,39 +29,37 @@
 
             <div class="nav-links">
 
-                {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
 
-                    <span class="user-info">
-                        {{ user.username }}
-                        ({{ user.get_role_display }})
-                    </span>
+        <span class="user-info">
+            {{ user.username }}
+            ({{ user.get_role_display }})
+        </span>
 
-                    <a href="{% url 'role_home' %}">
-                        Home
-                        
-<form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
+        <a href="{% url 'role_home' %}">
+            Home
+        </a>
 
-    <button type="submit" class="btn-logout">
-        Logout
-    </button>
-</form>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-logout">
+                Logout
+            </button>
+        </form>
 
-                    </a>
+    {% else %}
 
-                {% else %}
+        <a href="{% url 'login' %}">
+            Login
+        </a>
 
-                    <a href="{% url 'login' %}">
-                        Login
-                    </a>
+        <a href="{% url 'register' %}">
+            Register
+        </a>
 
-                    <a href="{% url 'register' %}">
-                        Register
-                    </a>
+    {% endif %}
 
-                {% endif %}
-
-            </div>
+</div>
 
         </nav>
     </header>
