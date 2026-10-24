@@ -1,11 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Donor | FoodBridge</title>
-</head>
-<body>
-    <h1>Welcome, Donor</h1>
-    <p>You are signed in with a Donor account.</p>
-</body>
-</html>
+
+{% extends "base.html" %}
+
+{% block title %}Donor | FoodBridge{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+    <div class="auth-card">
+
+        <h1>Welcome, Donor!</h1>
+
+        <p>
+            You are signed in with a Donor account.
+        </p>
+
+        <p>
+            Food listing features are coming soon.
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}
