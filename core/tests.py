@@ -62,3 +62,42 @@ class FoodListingModelTests(TestCase):
 
         with self.assertRaises(ValidationError):
             listing.full_clean()
+
+    
+    def test_food_listing_rejects_past_deadline(self):
+        listing = FoodListing(
+            donor=self.donor,
+            title="Fresh Vegetables",
+            category="Vegetables",
+            quantity=10,
+            location="London",
+            collection_deadline=timezone.now() - timedelta(days=1),
+        )
+
+        with self.assertRaises(ValidationError):
+            listing.full_clean()
+
+
+    
+    def test_recipient_cannot_own_food_listing(self):
+        recipient = get_user_model().objects.create_user(
+            username="testrecipient",
+            email="recipient@example.com",
+            password="TestPassword123!",
+            role="RECIPIENT"
+        )
+
+        listing = FoodListing(
+            donor=recipient,
+            title="Fresh Bread",
+            category="Bakery",
+            quantity=10,
+            location="London",
+            collection_deadline=timezone.now() + timedelta(days=1)
+        )
+
+        with self.assertRaisesMessage(
+            ValidationError,
+            "Only users with the Donor role can own food listings."
+        ):
+            listing.full_clean()

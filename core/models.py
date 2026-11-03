@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 
 class FoodListing(models.Model):
@@ -44,6 +46,21 @@ class FoodListing(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True
     )
+
+
+    def clean(self):
+        super().clean()
+
+        if self.donor_id is not None and self.donor.role != "DONOR":
+            raise ValidationError({
+                "donor": "Only users with the Donor role can own food listings."
+            })
+
+        if self.collection_deadline and self.collection_deadline <= timezone.now():
+            raise ValidationError({
+                "collection_deadline": "Collection deadline must be in the future."
+            })
+
 
     def __str__(self):
         return self.title
