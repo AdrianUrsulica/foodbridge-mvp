@@ -77,7 +77,23 @@ class FoodListingModelTests(TestCase):
         with self.assertRaises(ValidationError):
             listing.full_clean()
 
+    
+    def test_food_listing_accepts_future_deadline(self):
+        listing = FoodListing(
+            donor=self.donor,
+            title="Fresh Vegetables",
+            category="Vegetables",
+            quantity=10,
+            location="London",
+            collection_deadline=timezone.now() + timedelta(days=1),
+        )
 
+        listing.full_clean()
+
+        self.assertEqual(
+            listing.donor,
+            self.donor
+        )
     
     def test_recipient_cannot_own_food_listing(self):
         recipient = get_user_model().objects.create_user(
