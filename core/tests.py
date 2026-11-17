@@ -47,9 +47,21 @@ class FoodListingModelTests(TestCase):
             collection_deadline=timezone.now() + timedelta(days=1)
         )
 
+
+    def test_food_listing_rejects_negative_quantity(self):
+        listing = FoodListing(
+            donor=self.donor,
+            title="Fresh Bread",
+            category="Bakery",
+            quantity=-5,
+            location="Wembley, London",
+            collection_deadline=timezone.now() + timedelta(days=1)
+        )
+
         with self.assertRaises(ValidationError):
             listing.full_clean()
 
+    
     def test_food_listing_requires_title(self):
         listing = FoodListing(
             donor=self.donor,
