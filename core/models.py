@@ -51,6 +51,13 @@ class FoodListing(models.Model):
     def clean(self):
         super().clean()
 
+
+        if self.title and not self.title.strip():
+            raise ValidationError({
+                "title": "Food listing title cannot contain only whitespace."
+            })
+
+
         if self.donor_id is not None and self.donor.role != "DONOR":
             raise ValidationError({
                 "donor": "Only users with the Donor role can own food listings."

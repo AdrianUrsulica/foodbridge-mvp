@@ -74,6 +74,20 @@ class FoodListingModelTests(TestCase):
 
         with self.assertRaises(ValidationError):
             listing.full_clean()
+    
+
+    def test_food_listing_rejects_whitespace_only_title(self):
+        listing = FoodListing(
+            donor=self.donor,
+            title="   ",
+            category="Bakery",
+            quantity=10,
+            location="London",
+            collection_deadline=timezone.now() + timedelta(days=1)
+        )
+
+        with self.assertRaises(ValidationError):
+            listing.full_clean()
 
     
     def test_food_listing_rejects_past_deadline(self):
