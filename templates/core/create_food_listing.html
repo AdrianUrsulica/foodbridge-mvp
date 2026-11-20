@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+
+{% block title %}Create Food Listing | FoodBridge{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+    <div class="auth-card">
+
+        <h1>Create Food Listing</h1>
+
+        <p>
+            Share surplus food with people
+            in your community.
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="form-group">
+
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+                        <small>{{ field.help_text }}</small>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                        <p class="error-message">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn-primary">
+                Create Listing
+            </button>
+
+        </form>
+
+        <p>
+            <a href="{% url 'donor_home' %}">
+                Back to Donor Dashboard
+            </a>
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}
