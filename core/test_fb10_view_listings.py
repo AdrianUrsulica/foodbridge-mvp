@@ -68,7 +68,7 @@ class ViewFoodListingsTests(TestCase):
     # AC7: the page is linked from the navigation
     def test_navigation_links_to_listings_page(self):
         response = self.client.get(reverse("recipient_home"))
-        self.assertContains(response, reverse("food_listings"))
+        self.assertContains(response, f'href="{reverse("food_listings")}"')
 
     # Only signed-in users can see the page
     def test_logged_out_user_is_sent_to_login(self):
