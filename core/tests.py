@@ -37,6 +37,7 @@ class FoodListingModelTests(TestCase):
             FoodListing.Status.AVAILABLE
         )
 
+    
     def test_food_listing_rejects_zero_quantity(self):
         listing = FoodListing(
             donor=self.donor,
@@ -47,6 +48,8 @@ class FoodListingModelTests(TestCase):
             collection_deadline=timezone.now() + timedelta(days=1)
         )
 
+        with self.assertRaises(ValidationError):
+            listing.full_clean()
 
     def test_food_listing_rejects_negative_quantity(self):
         listing = FoodListing(
@@ -60,6 +63,7 @@ class FoodListingModelTests(TestCase):
 
         with self.assertRaises(ValidationError):
             listing.full_clean()
+
 
     
     def test_food_listing_requires_title(self):
