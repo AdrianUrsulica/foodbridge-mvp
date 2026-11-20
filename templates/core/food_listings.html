@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Food Listings | FoodBridge{% endblock %}
+
+{% block content %}
+
+<section class="listings-page">
+
+    <h1>Available Food</h1>
+
+    {% if listings %}
+
+    <div class="listing-grid">
+        {% for listing in listings %}
+        <div class="listing-card">
+            <h2>{{ listing.title }}</h2>
+            <p><strong>Category:</strong> {{ listing.category }}</p>
+            <p><strong>Quantity:</strong> {{ listing.quantity }}</p>
+            <p><strong>Location:</strong> {{ listing.location }}</p>
+            <p><strong>Collect by:</strong> {{ listing.collection_deadline|date:"j M Y, H:i" }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+
+    <p class="empty-message">No food listings are available right now.</p>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
