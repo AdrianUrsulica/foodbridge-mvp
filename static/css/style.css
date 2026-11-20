@@ -220,3 +220,30 @@ body {
 .btn-logout:hover {
     background-color: #b52f2f;
 }
+/* FB-10 Food Listings */
+
+.listings-page {
+    padding: 30px 6%;
+}
+
+.listing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.listing-card {
+    background-color: #ffffff;
+    border: 1px solid #dce8df;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.listing-card h2 {
+    margin-top: 0;
+    color: #218451;
+}
+
+.empty-message {
+    font-size: 18px;
+}
