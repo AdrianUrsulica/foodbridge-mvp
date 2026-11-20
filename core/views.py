@@ -50,7 +50,7 @@ def create_food_listing(request):
             )
 
             # Temporary redirect until FB-10 integration.
-            return redirect("donor_home")
+            return redirect("food_listings")
 
     else:
         form = FoodListingForm()

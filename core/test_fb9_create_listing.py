@@ -76,8 +76,8 @@ class CreateFoodListingTests(TestCase):
 
         self.assertEqual(FoodListing.objects.count(), 1)
         self.assertRedirects(
-            response, reverse("donor_home")
-        )
+            response, reverse("food_listings")
+)
 
     def test_listing_assigned_to_logged_in_donor(self):
         self.client.force_login(self.donor)
