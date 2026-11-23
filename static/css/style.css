@@ -247,3 +247,42 @@ body {
 .empty-message {
     font-size: 18px;
 }
+
+/* FB-11 Edit & Delete Own Food Listings */
+
+.btn-inline {
+    display: inline-block;
+    width: auto;
+    padding: 10px 18px;
+    text-decoration: none;
+}
+
+.btn-danger {
+    background-color: #b42318;
+}
+
+.btn-danger:hover {
+    background-color: #8f1c13;
+}
+
+.flash-message {
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #e7f5ec;
+    color: #17633d;
+}
+
+.listing-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.listing-actions a {
+    color: #218451;
+    font-weight: bold;
+}
+
+.listing-actions a.link-danger {
+    color: #b42318;
+}
