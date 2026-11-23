@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}My Food Listings | FoodBridge{% endblock %}
+
+{% block content %}
+
+<section class="listings-page">
+
+    <h1>My Food Listings</h1>
+
+    {% for message in messages %}
+        <p class="flash-message">{{ message }}</p>
+    {% endfor %}
+
+    <p>
+        <a href="{% url 'create_food_listing' %}" class="btn-primary btn-inline">
+            Create Food Listing
+        </a>
+    </p>
+
+    {% if listings %}
+
+    <div class="listing-grid">
+        {% for listing in listings %}
+        <div class="listing-card">
+            <h2>{{ listing.title }}</h2>
+            <p><strong>Category:</strong> {{ listing.category }}</p>
+            <p><strong>Quantity:</strong> {{ listing.quantity }}</p>
+            <p><strong>Location:</strong> {{ listing.location }}</p>
+            <p><strong>Collect by:</strong> {{ listing.collection_deadline|date:"j M Y, H:i" }}</p>
+            <p><strong>Status:</strong> {{ listing.get_status_display }}</p>
+
+            <div class="listing-actions">
+                <a href="{% url 'edit_food_listing' listing.pk %}">Edit</a>
+                <a href="{% url 'delete_food_listing' listing.pk %}" class="link-danger">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+
+    <p class="empty-message">You have not created any food listings yet.</p>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
