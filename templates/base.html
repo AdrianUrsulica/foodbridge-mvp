@@ -18,7 +18,7 @@
           href="{% static 'css/style.css' %}">
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock %}">
 
     <header class="site-header">
         <nav class="navbar">
@@ -72,5 +72,7 @@
         {% endblock %}
     </main>
 
-<body class="{% block body_class %}{% endblock %}"></body>
+</body>
 </html>
+
+   
